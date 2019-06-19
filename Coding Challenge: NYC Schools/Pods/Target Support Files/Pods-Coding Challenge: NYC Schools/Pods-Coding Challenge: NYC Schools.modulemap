@@ -1,0 +1,6 @@
+framework module Pods_Coding_Challenge__NYC_Schools {
+  umbrella header "Pods-Coding Challenge: NYC Schools-umbrella.h"
+
+  export *
+  module * { export * }
+}
