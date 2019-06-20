@@ -153,7 +153,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avg SAT Math Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IA0-zv-GZA">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAT Average Math Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IA0-zv-GZA">
                                         <rect key="frame" x="0.0" y="342" width="398" height="20.5"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -166,7 +166,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avg SAT Reading Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fd8-uv-veb">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAT Average Reading Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fd8-uv-veb">
                                         <rect key="frame" x="0.0" y="399" width="398" height="20.5"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -179,7 +179,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avg SAT Writing Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hW-JW-ZLS">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAT Average Writing Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hW-JW-ZLS">
                                         <rect key="frame" x="0.0" y="456" width="398" height="20.5"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -194,13 +194,19 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="0oH-dm-Kvy">
+                                <rect key="frame" x="8" y="716" width="398" height="154"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" red="0.90747469663619995" green="0.90816402435302734" blue="0.90758144855499268" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="0oH-dm-Kvy" firstAttribute="top" secondItem="9k9-5i-3YG" secondAttribute="bottom" constant="8" id="06M-8a-xpq"/>
+                            <constraint firstItem="lKj-uG-e6b" firstAttribute="trailing" secondItem="0oH-dm-Kvy" secondAttribute="trailing" constant="8" id="GiK-ix-qpb"/>
                             <constraint firstItem="nDt-Sy-LNh" firstAttribute="leading" secondItem="lKj-uG-e6b" secondAttribute="leading" constant="16" id="LEN-GM-ODf"/>
                             <constraint firstItem="nDt-Sy-LNh" firstAttribute="top" secondItem="lKj-uG-e6b" secondAttribute="top" constant="16" id="cdm-wo-PSi"/>
-                            <constraint firstItem="lKj-uG-e6b" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9k9-5i-3YG" secondAttribute="bottom" constant="16" id="dKM-Aq-S2o"/>
                             <constraint firstItem="9k9-5i-3YG" firstAttribute="top" secondItem="nDt-Sy-LNh" secondAttribute="bottom" constant="16" id="daZ-AZ-dzi"/>
+                            <constraint firstItem="0oH-dm-Kvy" firstAttribute="leading" secondItem="lKj-uG-e6b" secondAttribute="leading" constant="8" id="fQR-1u-yKg"/>
+                            <constraint firstItem="0oH-dm-Kvy" firstAttribute="bottom" secondItem="lKj-uG-e6b" secondAttribute="bottom" constant="8" id="iZd-Go-mkG"/>
                             <constraint firstItem="9k9-5i-3YG" firstAttribute="leading" secondItem="lKj-uG-e6b" secondAttribute="leading" constant="8" id="lCg-6D-wta"/>
                             <constraint firstItem="lKj-uG-e6b" firstAttribute="trailing" secondItem="nDt-Sy-LNh" secondAttribute="trailing" constant="16" id="oab-RW-q4W"/>
                             <constraint firstItem="lKj-uG-e6b" firstAttribute="trailing" secondItem="9k9-5i-3YG" secondAttribute="trailing" constant="8" id="to0-um-7n4"/>
@@ -216,13 +222,14 @@
                         <outlet property="faxNumber" destination="QvP-4O-aWo" id="efv-Py-iCi"/>
                         <outlet property="numberOfStudents" destination="MET-J2-C8K" id="OD8-fd-pb9"/>
                         <outlet property="phoneNumber" destination="b4N-M9-Ft7" id="Hme-hF-eAP"/>
+                        <outlet property="schoolMapView" destination="0oH-dm-Kvy" id="wAf-kl-WYd"/>
                         <outlet property="schoolName" destination="nDt-Sy-LNh" id="eUh-cu-QSP"/>
                         <outlet property="websiteURL" destination="roH-gW-Ewz" id="McX-eT-cfo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADC-12-MlJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1649" y="132"/>
+            <point key="canvasLocation" x="1647.826086956522" y="131.91964285714286"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BI3-Ve-ub6">

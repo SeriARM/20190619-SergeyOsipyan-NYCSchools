@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import MapKit
 
 class SchoolDetailViewController: UIViewController {
-
+    
     var school: SchoolElement?
     var schoolSATScore: SATScoreElement?
+    @IBOutlet weak var schoolMapView: MKMapView!
     
     @IBOutlet weak var schoolName: UILabel!
     @IBOutlet weak var address: UILabel!
@@ -28,7 +30,7 @@ class SchoolDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
+        
         guard let schoolID = school?.dbn else { return }
         SchoolController.shared.getAllSchoolsSATScores(schoolID: schoolID) { (satScores) in
             self.schoolSATScore = satScores
@@ -38,7 +40,7 @@ class SchoolDetailViewController: UIViewController {
             
         }
     }
-    
+    // fill labels with School information
     func updateView() {
         
         guard let school = self.school, let schoolSATScore = schoolSATScore else { return }
@@ -52,20 +54,20 @@ class SchoolDetailViewController: UIViewController {
         avgMath.text = schoolSATScore.satMathAvgScore
         avgReading.text = schoolSATScore.satCriticalReadingAvgScore
         avgWritung.text = schoolSATScore.satWritingAvgScore
+        if let lat = Double(school.latitude!), let lng = Double(school.longitude!) {
+        let highSchoolCoordinate2D: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        self.addHighSchoolAnnotaionWithCoordinates(highSchoolCoordinate2D)
+        }
+    }
+    
+    func addHighSchoolAnnotaionWithCoordinates(_ highSchoolCoordinates: CLLocationCoordinate2D){
         
+        let highSchoolAnnotation = MKPointAnnotation()
+        highSchoolAnnotation.coordinate = highSchoolCoordinates
+        self.schoolMapView.addAnnotation(highSchoolAnnotation)
+        let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
+        let region = MKCoordinateRegion(center: highSchoolAnnotation.coordinate, span: span)
+        let adjustRegion = self.schoolMapView.regionThatFits(region)
+        self.schoolMapView.setRegion(adjustRegion, animated:true)
     }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
