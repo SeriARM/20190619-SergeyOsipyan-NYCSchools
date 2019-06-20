@@ -57,6 +57,10 @@ class SchoolListTableViewController: UITableViewController {
             let school = schools[indexPath.row]
             let destinationVC = segue.destination as! SchoolDetailViewController
             destinationVC.school = school
+//            guard let schoolID = school.dbn else { return }
+//            SchoolController.shared.getAllSchoolsSATScores(schoolID: schoolID) { (satScores) in
+//                destinationVC.schoolSATScore = satScores
+//            }
         }
     }
     

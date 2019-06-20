@@ -51,15 +51,14 @@ class SchoolController {
         
     }
     
-    func getAllSchoolsSATScores(schoolID: String, completion: @escaping ([SATScoreElement]) -> Void = { _ in }) {
+    func getAllSchoolsSATScores(schoolID: String, completion: @escaping (SATScoreElement) -> Void = { _ in }) {
         
-        let schoolSATScoreElementsEndpoint: String = "https://data.cityofnewyork.us/resource/f9bf-2cp4.json"
+        let schoolSATScoreElementsEndpoint: String = "https://data.cityofnewyork.us/resource/f9bf-2cp4.json?dbn=" + schoolID
         // Guarding creation the API url endpoint
-        guard var baseURL = URL(string: schoolSATScoreElementsEndpoint) else {
+        guard let baseURL = URL(string: schoolSATScoreElementsEndpoint) else {
             print("Error: cannot create URL")
             return
         }
-        baseURL.appendPathComponent(schoolID)
         //create the session object
         let session = URLSession.shared
         //now create the URLRequest object using the url object
@@ -76,11 +75,16 @@ class SchoolController {
                 print("Error: cannot get data")
                 return
             }
+            // Convert to a string and print
+            if let JSONString = String(data: data, encoding: String.Encoding.utf8) {
+                print(JSONString)
+            }
             do {
                 let jsonDecoder = JSONDecoder()
                 //create json object from data
                 let decodedTeam = try jsonDecoder.decode([SATScoreElement].self, from: data)
-                completion(decodedTeam)
+                guard let satScore = decodedTeam.first else { return }
+                completion(satScore)
             } catch let error {
                 print(error.localizedDescription)
             }
