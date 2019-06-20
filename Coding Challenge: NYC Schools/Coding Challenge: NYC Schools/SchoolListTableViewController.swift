@@ -26,7 +26,17 @@ class SchoolListTableViewController: UITableViewController {
         }
         // search delegate
         searchBar.delegate = self
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.singleTap(sender:)))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(singleTapGestureRecognizer)
     }
+    
+    @objc func singleTap(sender: UITapGestureRecognizer) {
+        self.searchBar.resignFirstResponder()
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,7 +55,9 @@ class SchoolListTableViewController: UITableViewController {
         var school: SchoolElement?
         if self.isSearching {
             if let searchedData = self.searchedSchool {
+                if searchedData.count > 0 {
                 school = searchedData[indexPath.row]
+                }
             }
         } else {
             school = schools[indexPath.row]
@@ -63,7 +75,8 @@ class SchoolListTableViewController: UITableViewController {
         } else {
             cell.detailTextLabel?.text = "N/A"
         }
-        
+        cell.accessoryType = .disclosureIndicator
+       //cell.backgroundColor = UIColor.lightGray
         return cell
     }
 
@@ -107,14 +120,12 @@ extension SchoolListTableViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-        searchBar.resignFirstResponder()
-        searchBar.showsCancelButton = false
-        tableView.reloadData()
         self.isSearching = false
+        searchBar.resignFirstResponder() // hides the keyboard.
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.isSearching = false
+        searchBar.resignFirstResponder() // hides the keyboard.
     }
 }

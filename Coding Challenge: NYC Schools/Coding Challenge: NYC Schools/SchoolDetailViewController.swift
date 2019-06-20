@@ -100,6 +100,7 @@ class SchoolDetailViewController: UIViewController {
         
         let highSchoolAnnotation = MKPointAnnotation()
         highSchoolAnnotation.coordinate = highSchoolCoordinates
+        highSchoolAnnotation.title = school?.schoolName
         self.schoolMapView.addAnnotation(highSchoolAnnotation)
         let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
         let region = MKCoordinateRegion(center: highSchoolAnnotation.coordinate, span: span)
