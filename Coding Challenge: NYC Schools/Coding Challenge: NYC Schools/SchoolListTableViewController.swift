@@ -36,11 +36,14 @@ class SchoolListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "schoolCell", for: indexPath)
         let school = schools[indexPath.row]
         cell.textLabel?.text = school.schoolName
-        if let totalStudents = school.totalStudents, let address = school.location {
+        if let totalStudents = school.totalStudents {
+            if let addres = school.location {
+                
             cell.detailTextLabel?.text = """
             Total Students: \(totalStudents)
-            Address: \(address)
+            Address: \(addres.components(separatedBy: "(")[0])
             """
+            }
         } else {
             cell.detailTextLabel?.text = "N/A"
         }
