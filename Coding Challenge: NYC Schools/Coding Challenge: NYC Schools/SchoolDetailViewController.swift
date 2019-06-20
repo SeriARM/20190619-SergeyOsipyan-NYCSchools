@@ -45,7 +45,9 @@ class SchoolDetailViewController: UIViewController {
         
         guard let school = self.school, let schoolSATScore = schoolSATScore else { return }
         schoolName.text = school.schoolName
-        address.text = school.location
+        if let addres = school.location {
+        address.text = addres.components(separatedBy: "(")[0]
+        }
         phoneNumber.text = school.phoneNumber
         faxNumber.text = school.faxNumber
         emailAddress.text =  school.schoolEmail
